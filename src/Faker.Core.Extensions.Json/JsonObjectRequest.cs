@@ -81,5 +81,10 @@ namespace Faker.Core.Extensions.Json {
 
             return null;
         }
+
+        public override IEnumerable<string> GetProperties()
+        {
+            return _objectDictionary.Keys;
+        }
     }
 }

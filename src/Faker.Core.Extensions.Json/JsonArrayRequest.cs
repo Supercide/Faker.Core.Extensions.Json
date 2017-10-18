@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Faker.Core.Extensions.Json {
     public class JsonArrayRequest : JsonRequest
@@ -25,6 +27,11 @@ namespace Faker.Core.Extensions.Json {
             }
             
             return value;
+        }
+
+        public override IEnumerable<string> GetProperties()
+        {
+            return Enumerable.Range(0, _jArray.Count).Select(index => $"{index}");
         }
     }
 }
