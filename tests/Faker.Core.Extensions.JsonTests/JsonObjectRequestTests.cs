@@ -11,7 +11,7 @@ namespace Faker.Core.Extensions.JsonTests
         [Test]
         public void GivenValidJson_WhenCreatingJsonObjectRequest_ThenCreatesObject()
         {
-            var request = JsonRequest.Create("{ \"a\": 1, \"b\": 2}");
+            var request = JsonRequest.Create("{ \"a\": 1, \"b\": 2}", new Dictionary<string, string>());
             
             var properties = request.GetProperties();
 
@@ -23,7 +23,7 @@ namespace Faker.Core.Extensions.JsonTests
         [Test]
         public void GivenInValidJson_WhenCreatingJsonObjectRequest_ThenThrowsException()
         {
-            Assert.Throws<ArgumentException>(() => JsonRequest.Create("a"));
+            Assert.Throws<ArgumentException>(() => JsonRequest.Create("a", new Dictionary<string, string>()));
         }
     }
 }

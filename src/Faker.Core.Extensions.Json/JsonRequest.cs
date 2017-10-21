@@ -5,18 +5,23 @@ using Newtonsoft.Json.Linq;
 namespace Faker.Core.Extensions.Json {
     public abstract class JsonRequest : IRequest
     {
-        public static JsonRequest Create(string json)
+        protected JsonRequest(IReadOnlyDictionary<string, string> metadata)
+        {
+            Metadata = metadata;
+        }
+
+        public static JsonRequest Create(string json, IReadOnlyDictionary<string, string> metadata)
         {
             try
             {
                 var container = JToken.Parse(json);
-
+                
                 switch (container.Type)
                 {
                     case JTokenType.Array:
-                        return new JsonArrayRequest(JArray.Parse(json));
+                        return new JsonArrayRequest(JArray.Parse(json), metadata);
                     case JTokenType.Object:
-                        return new JsonObjectRequest(JObject.Parse(json));
+                        return new JsonObjectRequest(JObject.Parse(json), metadata);
                     default:
                         throw new ArgumentException("invalid json type", nameof(json));
                 }
@@ -30,5 +35,6 @@ namespace Faker.Core.Extensions.Json {
         public abstract string GetPropertyValueBy(string path);
         public abstract string GetPropertyValueBy(int index);
         public abstract IEnumerable<string> GetProperties();
+        public IReadOnlyDictionary<string, string> Metadata { get; set; }
     }
 }

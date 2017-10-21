@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Faker.Core.Extensions.Json;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ namespace Faker.Core.Extensions.JsonTests
         [Test]
         public void GivenValidJson_WhenCreatingJsonArrayRequest_ThenCreatesObject()
         {
-            var request = JsonRequest.Create("[ \"a\", \"b\"]");
+            var request = JsonRequest.Create("[ \"a\", \"b\"]", new Dictionary<string, string>());
 
             var properties = request.GetProperties();
 
@@ -22,7 +23,7 @@ namespace Faker.Core.Extensions.JsonTests
         [Test]
         public void GivenInValidJson_WhenCreatingJsonArrayRequest_ThenThrowsException()
         {
-            Assert.Throws<ArgumentException>(() => JsonRequest.Create("a"));
+            Assert.Throws<ArgumentException>(() => JsonRequest.Create("a", new Dictionary<string, string>()));
         }
     }
 }

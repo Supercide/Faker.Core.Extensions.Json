@@ -7,7 +7,7 @@ namespace Faker.Core.Extensions.Json {
     {
         private readonly JArray _jArray;
 
-        public JsonArrayRequest(JArray jArray)
+        public JsonArrayRequest(JArray jArray, IReadOnlyDictionary<string, string> metadata): base(metadata)
         {
             _jArray = jArray;
         }

@@ -7,7 +7,7 @@ namespace Faker.Core.Extensions.Json {
     {
         private readonly Dictionary<string, string> _objectDictionary;
 
-        public JsonObjectRequest(JObject jObject)
+        public JsonObjectRequest(JObject jObject, IReadOnlyDictionary<string, string> metadata): base(metadata)
         {
             _objectDictionary = jObject.Cast<KeyValuePair<string, JToken>>()
                                        .SelectMany(property => WalkNode(property.Value))
