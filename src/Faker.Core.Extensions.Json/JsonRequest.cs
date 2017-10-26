@@ -19,9 +19,9 @@ namespace Faker.Core.Extensions.Json {
                 switch (container.Type)
                 {
                     case JTokenType.Array:
-                        return new JsonArrayRequest(JArray.Parse(json), metadata);
+                        return new JsonArrayRequest(json, JArray.Parse(json), metadata);
                     case JTokenType.Object:
-                        return new JsonObjectRequest(JObject.Parse(json), metadata);
+                        return new JsonObjectRequest(json, JObject.Parse(json), metadata);
                     default:
                         throw new ArgumentException("invalid json type", nameof(json));
                 }
@@ -35,6 +35,7 @@ namespace Faker.Core.Extensions.Json {
         public abstract string GetPropertyValueBy(string path);
         public abstract string GetPropertyValueBy(int index);
         public abstract IEnumerable<string> GetProperties();
+        public string RawContent { get; protected set; }
         public IReadOnlyDictionary<string, string> Metadata { get; set; }
     }
 }
