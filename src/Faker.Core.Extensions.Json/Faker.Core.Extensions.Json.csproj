@@ -13,7 +13,7 @@
 
 
     <ItemGroup>
-      <PackageReference Include="Faker.Core.Extensions" Version="0.6.0.14-Persistence" />
+      <PackageReference Include="Faker.Core.Extensions" Version="0.6.0" />
       <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     </ItemGroup>
 
